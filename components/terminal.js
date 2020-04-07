@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import OutsideClickHandler from "react-outside-click-handler";
 
 class TerminalComponent extends React.Component {
   _input;
@@ -9,20 +10,7 @@ class TerminalComponent extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener("mousedown", (e) => this.handleClickOutside(e));
     this._input.focus();
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("mousedown", (e) =>
-      this.handleClickOutside(e)
-    );
-  }
-
-  handleClickOutside(event) {
-    if (this._input && !this._input.contains(event.target)) {
-      this._input.focus();
-    }
   }
 
   render() {
@@ -50,20 +38,22 @@ class TerminalComponent extends React.Component {
         <p id="welcome">
           Last login: {currDay} {currMon} {date.date()} {currTime} on ttys000
         </p>
-        <div>
-          <span id="arrow">➜</span>
-          <span id="dir"> ./yuditan.com</span> <span id="git">git:(</span>
-          <span id="gitbranch">master</span>
-          <span id="git">)</span> <span id="cross">✗</span>
-          <input
-            autoFocus={true}
-            ref={(c) => (this._input = c)}
-            type="text"
-            maxLength="8"
-            id="cmd"
-            onChange={(e) => console.log(e.target.value)}
-          />
-        </div>
+        <OutsideClickHandler onOutsideClick={() => this._input.focus()}>
+          <div>
+            <span id="arrow">➜</span>
+            <span id="dir"> ./yuditan.com</span> <span id="git">git:(</span>
+            <span id="gitbranch">master</span>
+            <span id="git">)</span> <span id="cross">✗</span>
+            <input
+              autoFocus={true}
+              ref={(c) => (this._input = c)}
+              type="text"
+              maxLength="8"
+              id="cmd"
+              onChange={(e) => console.log(e.target.value)}
+            />
+          </div>
+        </OutsideClickHandler>
       </div>
     );
   }
