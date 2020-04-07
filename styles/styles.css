@@ -1,0 +1,82 @@
+body {
+  background: black;
+  font-family: "Source Code Pro", serif;
+  color: white;
+  text-align: left;
+  padding: 10px 25px;
+  line-height: 10px;
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Source Code Pro"), local("SourceCodePro-Regular"),
+    url(https://fonts.gstatic.com/s/sourcecodepro/v7/mrl8jkM18OlOQN8JLgasD4a1YDtoarzwSXxTHggEXMw.woff2)
+      format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Source Code Pro"), local("SourceCodePro-Regular"),
+    url(https://fonts.gstatic.com/s/sourcecodepro/v7/mrl8jkM18OlOQN8JLgasD5bPFduIYtoLzwST68uhz_Y.woff2)
+      format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+#arrow {
+  color: #95fb7f;
+}
+
+#arrow2 {
+  color: #ff6c66;
+}
+
+#console {
+  background-color: #24244b;
+}
+
+#dir {
+  color: #c3f6f2;
+}
+
+#git {
+  color: #0099c4;
+}
+
+#gitbranch {
+  color: #e66463;
+}
+
+#welcome {
+  color: #ebcebc;
+}
+
+#cross {
+  color: #f7c43b;
+  margin-right: 5px;
+}
+
+#cmd {
+  color: #3bb32e;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+input {
+  caret-color: #edc960;
+}
+
+input[type="text"] {
+  font-family: "Source Code Pro", serif;
+  font-size: 15px;
+}

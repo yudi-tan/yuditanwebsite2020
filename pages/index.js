@@ -1,3 +1,3 @@
-import Terminal from "../components/terminal";
+import TerminalComponent from "../components/terminal";
 
-export default Terminal;
+export default TerminalComponent;
