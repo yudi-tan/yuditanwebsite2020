@@ -62,6 +62,10 @@ body {
   margin-right: 5px;
 }
 
+#correctCmd {
+  color: #3bb32e;
+}
+
 #cmd {
   color: #3bb32e;
   background-color: rgba(0, 0, 0, 0);
