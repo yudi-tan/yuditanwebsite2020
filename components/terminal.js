@@ -126,8 +126,8 @@ class TerminalComponent extends React.Component {
         <OutsideClickHandler onOutsideClick={() => this._input.focus()}>
           <div>
             {this.state.pastCmds.map((c) => (
-              <div style={{ marginBottom: "17px" }}>
-                <span id="arrow">➜</span>
+              <div style={{ marginBottom: "10px" }}>
+                <span id={c.valid ? "arrow" : "gitbranch"}>➜</span>
                 <span id="dir"> ./yuditan.com</span> <span id="git">git:(</span>
                 <span id="gitbranch">master</span>
                 <span id="git">)</span> <span id="cross">✗</span>
@@ -135,21 +135,23 @@ class TerminalComponent extends React.Component {
                 <p>{c.output}</p>
               </div>
             ))}
-            <span id="arrow">➜</span>
-            <span id="dir"> ./yuditan.com</span> <span id="git">git:(</span>
-            <span id="gitbranch">master</span>
-            <span id="git">)</span> <span id="cross">✗</span>
-            <input
-              autoComplete="off"
-              autoFocus={true}
-              ref={(c) => (this._input = c)}
-              type="text"
-              maxLength="8"
-              id="cmd"
-              value={this.state.currCmd}
-              onChange={(e) => this.setState({ currCmd: e.target.value })}
-              onKeyDown={this.newCmd}
-            />
+            <div>
+              <span id="arrow">➜</span>
+              <span id="dir"> ./yuditan.com</span> <span id="git">git:(</span>
+              <span id="gitbranch">master</span>
+              <span id="git">)</span> <span id="cross">✗</span>
+              <input
+                autoComplete="off"
+                autoFocus={true}
+                ref={(c) => (this._input = c)}
+                type="text"
+                maxLength="8"
+                id="cmd"
+                value={this.state.currCmd}
+                onChange={(e) => this.setState({ currCmd: e.target.value })}
+                onKeyDown={this.newCmd}
+              />
+            </div>
           </div>
         </OutsideClickHandler>
       </div>
