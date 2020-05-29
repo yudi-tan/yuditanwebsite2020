@@ -118,6 +118,12 @@ class TerminalComponent extends React.Component {
         <p id="welcome">
           Last login: {currDay} {currMon} {date.date()} {currTime} on ttys000
         </p>
+        <p style={{ fontSize: 15 }}>
+          Hello! I'm Yudi Tan and I'm currently doing my M.S. in Computer Science in UC Berkeley.
+        </p>
+        <p style={{ fontSize: 15 }}>
+          I'm mainly interested in distributed systems, and in my free time, I enjoy building apps and doing photography. Feel free to reach out to me to chat about anything!
+        </p>
         <pre>
           <code style={{ color: "#81CFDD" }}>
             {/* http://taylorkemper.com/assets/images/terminal-ascii-art/golang.txt */}
@@ -150,12 +156,7 @@ class TerminalComponent extends React.Component {
       :mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmd:dMMd/:dMMMoommmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmd     
       -mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmdsoosmdsoooymmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmd  `}
           </code>
-          <p style={{ fontSize: 15 }}>
-            Hello! I'm Yudi Tan and I'm currently doing my M.S. in Computer Science in UC Berkeley.
-          </p>
-          <p style={{ fontSize: 15 }}>
-            I'm mainly interested in distributed systems, and in my free time, I enjoy building apps and doing photography. Feel free to reach out to me to chat about anything!
-          </p>
+
         </pre>
         <OutsideClickHandler onOutsideClick={() => this._input.focus()}>
           <div>
