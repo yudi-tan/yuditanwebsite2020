@@ -154,7 +154,7 @@ class TerminalComponent extends React.Component {
             Hello! I'm Yudi Tan and I'm currently doing my M.S. in Computer Science in UC Berkeley.
           </p>
           <p style={{ fontSize: 15 }}>
-            My main interests resides in distributed systems, and in my free time, I enjoy building apps and doing photography. Feel free to reach out to me to chat about anything!
+            I'm mainly interested in distributed systems, and in my free time, I enjoy building apps and doing photography. Feel free to reach out to me to chat about anything!
           </p>
         </pre>
         <OutsideClickHandler onOutsideClick={() => this._input.focus()}>
