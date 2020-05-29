@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import OutsideClickHandler from "react-outside-click-handler";
+import Head from "next/head";
 
 class TerminalComponent extends React.Component {
   _input;
@@ -24,29 +25,20 @@ class TerminalComponent extends React.Component {
   }
 
   // Listens for the ctrl + l shortcut to clear contents on screen.
-  clearFunc = (e) => {
+  clearFunc = e => {
     if (e.ctrlKey && e.which == 76) {
       this.setState({ currCmd: "", pastCmds: [] });
     }
   };
 
   // Takes in a cmd string and returns a cmd obj {valid: bool, cmd: string, output: string}
-  transformCmd = (cmd) => {
+  transformCmd = cmd => {
     switch (cmd) {
       case "help":
         return {
           valid: true,
           cmd,
-          output:
-            "The available commands are: 'clear', 'help', 'about', 'email', 'github', 'resume' and 'linkedin'. ",
-        };
-
-      case "about":
-        return {
-          valid: true,
-          cmd,
-          output:
-            "Hello! I'm Yudi, a senior majoring in Computer Science at UC Berkeley.",
+          output: "The available commands are: 'clear', 'help', 'email', 'github', 'resume' and 'linkedin'. ",
         };
       case "email":
         return {
@@ -64,8 +56,7 @@ class TerminalComponent extends React.Component {
         return {
           valid: true,
           cmd,
-          output:
-            "https://drive.google.com/file/d/1WVZrES8Ia_34K-xSOrt9g6sf8Kx_tzlp/view?usp=sharing",
+          output: "https://drive.google.com/file/d/1WVZrES8Ia_34K-xSOrt9g6sf8Kx_tzlp/view?usp=sharing",
         };
       case "linkedin":
         return {
@@ -82,7 +73,7 @@ class TerminalComponent extends React.Component {
     }
   };
 
-  newCmd = (e) => {
+  newCmd = e => {
     if (e.keyCode == 13) {
       // If user pressed enter, push this cmd into pastCmds and reset
       // currCmd to blank
@@ -120,12 +111,55 @@ class TerminalComponent extends React.Component {
     const currTime = date.format("HH:mm:ss");
     return (
       <div>
+        <Head>
+          <title>Yudi Tan</title>
+
+        </Head>
         <p id="welcome">
           Last login: {currDay} {currMon} {date.date()} {currTime} on ttys000
         </p>
+        <pre>
+          <code style={{ color: "#81CFDD" }}>
+            {/* http://taylorkemper.com/assets/images/terminal-ascii-art/golang.txt */}
+            {`
+                                        \`.--://++++++++///::-.\`                                    
+                               \`.:/+syhdmmmmmmmmmmmmmmmmmmmmmmmmmdhyo+:.                            
+                          \`:+shddmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmddyo/.                       
+                      \`:ohdmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmdddddmmmmmmdho-      .--:-.\`       
+       \`.::::-.    \`/ydmmmmdhyysssyydmmmmmmmmmmmmmmmmmmmmmmhsssssyyyyssssshmmmmdh+..shdddddddy/.    
+    \`/ydddmmmddh--sdmmmdsssshdmmmmmdysssymmmmmmmmmmmmmmmhooymNMMMmdmNMMMNmyosmmmmmds/ymmmmmmmmmdo\`  
+  \`+dmmmmmmmmms/ydmmmyosdNMMMMMdyyhNMMMNhosdmmmmmmmmmmdosmMMMMMh-\`\`\`.oNMMMMNh/hmmmmmdo/++oymmmmmmy\` 
+ \`ymmmmdsooyh/sdmmmd+yNMMMMMMm-\`   .oMMMMMd/hmmmmmmmmh/dMMMMMMd\`      oMMMMMMN/ymmmmmmh-  \`ommmmmms 
+ smmmmy.    :hmmmmd/dMMMMMMMM:       dMMMMMN/hmmmmmmh:NMMMMMMMd   /-  +MMMMMMMN:dmmmmmmd/  :mmmmmmm 
+ dmmmm/    :dmmmmm/dMMMMMMMMM/  -o\` \`mMMMMMMm:mmmmmm/dMMMMMMMMMs.\`y+\`/NMMMMMMMMsommmmmmmd+-dmmmmmmh 
+ ymmmmd/. :dmmmmmd:MMMMMMMMMMNo-/y-:dMMMMMMMM:dmmmmm.MMMMMMMMMMMNdhdmMMMMMMMMMMd/mmmmmmmmd:ymmmmmd- 
+ .hmmmmms-dmmmmmmh/MMMMMMMMMMMMNmmmMMMMMMMMMM/hmmmmm.MMMMMMMMMMMMMMMMMMMMMMMMMMh/mmmmmmmmmh-dmmds.  
+  \`+hmmd-hmmmmmmmd-MMMMMMMMMMMMMMMMMMMMMMMMMM-dmmmmmosMMMMMMMMMMMMMMMMMMMMMMMMM/ymmmmmmmmmmo+s/.    
+    \`-+/+mmmmmmmmm+yMMMMMMMMMMMMMMMMMMMMMMMMsommmmmmd/hMMMMMMMMMMMMMMMMMMMMMMNoommmmmmmmmmmd.       
+       \`dmmmmmmmmmd/hMMMMMMMMMMMMMMMMMMMMMNs+mmmmdddddosmMMMMMMMMMMMMMMMMMMMd+smmmmmmmmmmmmmo       
+       +mmmmmmmmmmmdoomMMMMMMMMMMMMMMMMMNh+ymdy+:-.--:ososdNMMMMMMMMMMMMNmhosdmmmmmmmmmmmmmmd\`      
+       hmmmmmmmmmmmmmhsohmNMMMMMMMMMNmdsoydmh-         \`ydyssyhddmmddhyssshmmmmmmmmmmmmmmmmmm/      
+      \`mmmmmmmmmmmmmmmmdyysssyyyyysssyydmdhs:          \`:yhmmdhyyyyyyhdmmmmmmmmmmmmmmmmmmmmmmy      
+      :mmmmmmmmmmmmmmmmmmmmmmdddddmmmmmmy/oyh+-.\`\`\`..:+yhyo+ydmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmd      
+      /mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmh-hdddddddhhdddddddddo/dmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm-     
+      +mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmo/dddddddddddddddddddd:ymmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm/     
+      ommmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmd:shhhhyoo+-sooshhddho/dmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmo     
+      ommmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmyo:oydNMh-MMMm+:oooymmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmms     
+      +mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm-mMMMMs/MMMMh+mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmy     
+      +mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm+yMMMMs/MMMMd/mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmh     
+      :mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmd:dMMd/:dMMMoommmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmd     
+      -mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmdsoosmdsoooymmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmd  `}
+          </code>
+          <p style={{ fontSize: 15 }}>
+            Hello! I'm Yudi Tan and I'm currently doing my M.S. in Computer Science in UC Berkeley.
+          </p>
+          <p style={{ fontSize: 15 }}>
+            My main interests resides in distributed systems, and in my free time, I enjoy building apps and doing photography. Feel free to reach out to me to chat about anything!
+          </p>
+        </pre>
         <OutsideClickHandler onOutsideClick={() => this._input.focus()}>
           <div>
-            {this.state.pastCmds.map((c) => (
+            {this.state.pastCmds.map(c => (
               <div style={{ marginBottom: "10px" }}>
                 <span id={c.valid ? "arrow" : "gitbranch"}>➜</span>
                 <span id="dir"> ./yuditan.com</span> <span id="git">git:(</span>
@@ -143,12 +177,12 @@ class TerminalComponent extends React.Component {
               <input
                 autoComplete="off"
                 autoFocus={true}
-                ref={(c) => (this._input = c)}
+                ref={c => (this._input = c)}
                 type="text"
                 maxLength="8"
                 id="cmd"
                 value={this.state.currCmd}
-                onChange={(e) => this.setState({ currCmd: e.target.value })}
+                onChange={e => this.setState({ currCmd: e.target.value })}
                 onKeyDown={this.newCmd}
               />
             </div>
